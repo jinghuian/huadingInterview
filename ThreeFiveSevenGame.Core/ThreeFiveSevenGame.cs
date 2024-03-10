@@ -58,12 +58,12 @@ namespace ThreeFiveSevenGameCore
             int userSelected = ran.Next(1, 3);
             if (userSelected == 1)
             {
-                StatusDescription = $"游戏开始，玩家{GameUserOneName}先抽。";
+                StatusDescription = $"游戏开始，玩家{GameUserOneName}先抽取。";
                 CurrentUser = GameUserOneName;
             }
             else
             {
-                StatusDescription = $"游戏开始，玩家{GameUserTwoName}先抽";
+                StatusDescription = $"游戏开始，玩家{GameUserTwoName}先抽取";
                 CurrentUser = GameUserTwoName;
             }
             
