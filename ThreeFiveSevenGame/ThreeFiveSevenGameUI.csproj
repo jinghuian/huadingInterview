@@ -88,5 +88,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThreeFiveSevenGameCore\ThreeFiveSevenGameCore.csproj">
+      <Project>{66a498d5-0ccf-492f-91e9-953c44ef43cd}</Project>
+      <Name>ThreeFiveSevenGameCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

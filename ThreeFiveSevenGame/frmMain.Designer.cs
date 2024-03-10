@@ -1,4 +1,4 @@
-﻿namespace ThreeFiveSevenGame
+﻿namespace ThreeFiveSevenGameUI
 {
     partial class frmMain
     {

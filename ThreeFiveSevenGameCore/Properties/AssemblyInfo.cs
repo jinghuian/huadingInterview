@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("ThreeFiveSevenGameUI")]
+[assembly: AssemblyTitle("ThreeFiveSevenGameCore")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ThreeFiveSevenGameUI")]
+[assembly: AssemblyProduct("ThreeFiveSevenGameCore")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("337a05ee-a7ae-47b5-b4f7-ac478a060e37")]
+[assembly: Guid("66a498d5-0ccf-492f-91e9-953c44ef43cd")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
@@ -34,3 +34,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: InternalsVisibleTo("ThreeFiveSevenGameCore.Tests")]
+[assembly: InternalsVisibleTo("ThreeFiveSevenGameCore.Explorables")]

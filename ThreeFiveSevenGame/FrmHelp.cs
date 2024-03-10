@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ThreeFiveSevenGame
+namespace ThreeFiveSevenGameUI
 {
     public partial class FrmHelp : Form
     {

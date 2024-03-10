@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ThreeFiveSevenGame.Properties
+namespace ThreeFiveSevenGameUI.Properties
 {
 
 
