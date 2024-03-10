@@ -36,10 +36,6 @@ namespace ThreeFiveSevenGame
         private void menuStart_Click(object sender, EventArgs e)
         {
 
-
-
-
-
             if (menuStart.Text == "重新开始")
             {
                 txtUserOne.Text = "One";
