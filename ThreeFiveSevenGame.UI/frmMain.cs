@@ -25,14 +25,13 @@ namespace ThreeFiveSevenGameUI
             threeFiveSevenGame.GameCompleted += ThreeFiveSevenGame_GameCompleted;
             threeFiveSevenGame.StatusDescriptionChanged += ThreeFiveSevenGame_StatusDescriptionChanged;
             threeFiveSevenGame.BoxCountChanged += ThreeFiveSevenGame_BoxCountChanged;
+            threeFiveSevenGame.CurrentUserChanged += ThreeFiveSevenGame_CurrentUserChanged;
+            threeFiveSevenGame.CurrentSelectedBoxChanged += ThreeFiveSevenGame_CurrentSelectedBoxChanged; ;
             btnTree.Text = threeFiveSevenGame.TreeBoxCount.ToString();
             btnFive.Text = threeFiveSevenGame.FiveBoxCount.ToString();
             btnSeven.Text = threeFiveSevenGame.SevenBoxCount.ToString();
 
-            
         }
-
-       
 
 
 
@@ -118,27 +117,92 @@ namespace ThreeFiveSevenGameUI
 
 
 
-        private void ThreeFiveSevenGame_GameCompleted(string obj)
+        private void ThreeFiveSevenGame_GameCompleted(object sender, string obj)
         {
             MessageBox.Show(obj);
-           
+
             return;
         }
-        private void ThreeFiveSevenGame_BoxCountChanged()
+        private void ThreeFiveSevenGame_BoxCountChanged(object sender, EventArgs e)
         {
-            //如果为零 则禁用
-            btnTree.Enabled = !(threeFiveSevenGame.TreeBoxCount == 0);
-            btnFive.Enabled = !(threeFiveSevenGame.FiveBoxCount == 0);
-            btnSeven.Enabled = !(threeFiveSevenGame.SevenBoxCount == 0);
+
+            SetbtnBoxEnabled();
             //赋值
             btnTree.Text = threeFiveSevenGame.TreeBoxCount.ToString();
             btnFive.Text = threeFiveSevenGame.FiveBoxCount.ToString();
             btnSeven.Text = threeFiveSevenGame.SevenBoxCount.ToString();
         }
 
-        private void ThreeFiveSevenGame_StatusDescriptionChanged(string obj)
+        private void ThreeFiveSevenGame_StatusDescriptionChanged(object sender, string obj)
         {
             statusMessage.Text = obj;
+        }
+        private void ThreeFiveSevenGame_CurrentUserChanged(object sender, string obj)
+        {
+            btnOneConfirm.Enabled = txtUserOne.Text == obj;
+            btnOneCancel.Enabled = txtUserOne.Text == obj;
+            btnTwoConfirm.Enabled = txtUserTwo.Text == obj;
+            btnTwoCancel.Enabled = txtUserTwo.Text == obj;
+            SetbtnBoxEnabled();
+        }
+        private void ThreeFiveSevenGame_CurrentSelectedBoxChanged(object sender, EventArgs e)
+        {
+            SetbtnBoxEnabled();
+        }
+
+        private void SetbtnBoxEnabled()
+        {
+            if (threeFiveSevenGame.IsStart == false)
+            {
+                btnTree.Enabled = false;
+                btnFive.Enabled = false;
+                btnSeven.Enabled = false;
+                return;
+            }
+            //已选中盒子
+            if (threeFiveSevenGame.CurrentSelectedBox != 0)
+            {
+                btnTree.Enabled = (threeFiveSevenGame.CurrentSelectedBox == ThreeFiveSevenGame.BoxType.TreeBox && threeFiveSevenGame.TreeBoxCount > 0);
+                btnFive.Enabled = (threeFiveSevenGame.CurrentSelectedBox == ThreeFiveSevenGame.BoxType.FiveBox && threeFiveSevenGame.FiveBoxCount > 0);
+                btnSeven.Enabled = (threeFiveSevenGame.CurrentSelectedBox == ThreeFiveSevenGame.BoxType.SevenBox && threeFiveSevenGame.SevenBoxCount > 0);
+            }
+            else//未选中盒子
+            {
+                btnTree.Enabled = threeFiveSevenGame.TreeBoxCount > 0 ? true : false;
+                btnFive.Enabled = threeFiveSevenGame.FiveBoxCount > 0 ? true : false;
+                btnSeven.Enabled = threeFiveSevenGame.SevenBoxCount > 0 ? true : false;
+            }
+
+        }
+
+        private void btnOneConfirm_Click(object sender, EventArgs e)
+        {
+            if (threeFiveSevenGame.CurrentSelectedBox == ThreeFiveSevenGame.BoxType.NoBox)
+            {
+                MessageBox.Show($"未抽取，只有抽取后才可确认。");
+                return;
+            }
+            threeFiveSevenGame.UserConfirm(txtUserOne.Text);
+        }
+
+        private void btnOneCancel_Click(object sender, EventArgs e)
+        {
+            threeFiveSevenGame.UserCancel(txtUserOne.Text);
+        }
+
+        private void btnTwoConfirm_Click(object sender, EventArgs e)
+        {
+            if (threeFiveSevenGame.CurrentSelectedBox == ThreeFiveSevenGame.BoxType.NoBox)
+            {
+                MessageBox.Show($"未抽取，只有抽取后才可确认。");
+                return;
+            }
+            threeFiveSevenGame.UserConfirm(txtUserTwo.Text);
+        }
+
+        private void btnTwoCancel_Click(object sender, EventArgs e)
+        {
+            threeFiveSevenGame.UserCancel(txtUserTwo.Text);
         }
     }
 }

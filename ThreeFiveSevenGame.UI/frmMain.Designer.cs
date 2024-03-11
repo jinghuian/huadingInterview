@@ -32,18 +32,23 @@
             this.btnFive = new System.Windows.Forms.Button();
             this.btnSeven = new System.Windows.Forms.Button();
             this.menuMain = new System.Windows.Forms.MenuStrip();
+            this.menuStart = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.statusMessage = new System.Windows.Forms.StatusBar();
             this.lblUserOne = new System.Windows.Forms.Label();
             this.txtUserOne = new System.Windows.Forms.TextBox();
             this.txtUserTwo = new System.Windows.Forms.TextBox();
             this.lblUserTwo = new System.Windows.Forms.Label();
-            this.menuStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnOneConfirm = new System.Windows.Forms.Button();
+            this.btnOneCancel = new System.Windows.Forms.Button();
+            this.btnTwoConfirm = new System.Windows.Forms.Button();
+            this.btnTwoCancel = new System.Windows.Forms.Button();
             this.menuMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnTree
             // 
+            this.btnTree.Enabled = false;
             this.btnTree.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnTree.Location = new System.Drawing.Point(214, 50);
             this.btnTree.Name = "btnTree";
@@ -55,6 +60,7 @@
             // 
             // btnFive
             // 
+            this.btnFive.Enabled = false;
             this.btnFive.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnFive.Location = new System.Drawing.Point(214, 180);
             this.btnFive.Name = "btnFive";
@@ -66,6 +72,7 @@
             // 
             // btnSeven
             // 
+            this.btnSeven.Enabled = false;
             this.btnSeven.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSeven.Location = new System.Drawing.Point(214, 310);
             this.btnSeven.Name = "btnSeven";
@@ -86,6 +93,13 @@
             this.menuMain.Size = new System.Drawing.Size(635, 25);
             this.menuMain.TabIndex = 4;
             this.menuMain.Text = "菜单";
+            // 
+            // menuStart
+            // 
+            this.menuStart.Name = "menuStart";
+            this.menuStart.Size = new System.Drawing.Size(44, 21);
+            this.menuStart.Text = "开始";
+            this.menuStart.Click += new System.EventHandler(this.menuStart_Click);
             // 
             // menuHelp
             // 
@@ -138,18 +152,59 @@
             this.lblUserTwo.TabIndex = 9;
             this.lblUserTwo.Text = "玩家名称";
             // 
-            // menuStart
+            // btnOneConfirm
             // 
-            this.menuStart.Name = "menuStart";
-            this.menuStart.Size = new System.Drawing.Size(44, 21);
-            this.menuStart.Text = "开始";
-            this.menuStart.Click += new System.EventHandler(this.menuStart_Click);
+            this.btnOneConfirm.Enabled = false;
+            this.btnOneConfirm.Location = new System.Drawing.Point(17, 97);
+            this.btnOneConfirm.Name = "btnOneConfirm";
+            this.btnOneConfirm.Size = new System.Drawing.Size(157, 23);
+            this.btnOneConfirm.TabIndex = 11;
+            this.btnOneConfirm.Text = "确认";
+            this.btnOneConfirm.UseVisualStyleBackColor = true;
+            this.btnOneConfirm.Click += new System.EventHandler(this.btnOneConfirm_Click);
+            // 
+            // btnOneCancel
+            // 
+            this.btnOneCancel.Enabled = false;
+            this.btnOneCancel.Location = new System.Drawing.Point(17, 142);
+            this.btnOneCancel.Name = "btnOneCancel";
+            this.btnOneCancel.Size = new System.Drawing.Size(157, 23);
+            this.btnOneCancel.TabIndex = 13;
+            this.btnOneCancel.Text = "撤销";
+            this.btnOneCancel.UseVisualStyleBackColor = true;
+            this.btnOneCancel.Click += new System.EventHandler(this.btnOneCancel_Click);
+            // 
+            // btnTwoConfirm
+            // 
+            this.btnTwoConfirm.Enabled = false;
+            this.btnTwoConfirm.Location = new System.Drawing.Point(444, 97);
+            this.btnTwoConfirm.Name = "btnTwoConfirm";
+            this.btnTwoConfirm.Size = new System.Drawing.Size(157, 23);
+            this.btnTwoConfirm.TabIndex = 11;
+            this.btnTwoConfirm.Text = "确认";
+            this.btnTwoConfirm.UseVisualStyleBackColor = true;
+            this.btnTwoConfirm.Click += new System.EventHandler(this.btnTwoConfirm_Click);
+            // 
+            // btnTwoCancel
+            // 
+            this.btnTwoCancel.Enabled = false;
+            this.btnTwoCancel.Location = new System.Drawing.Point(444, 142);
+            this.btnTwoCancel.Name = "btnTwoCancel";
+            this.btnTwoCancel.Size = new System.Drawing.Size(157, 23);
+            this.btnTwoCancel.TabIndex = 13;
+            this.btnTwoCancel.Text = "撤销";
+            this.btnTwoCancel.UseVisualStyleBackColor = true;
+            this.btnTwoCancel.Click += new System.EventHandler(this.btnTwoCancel_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(635, 499);
+            this.Controls.Add(this.btnTwoCancel);
+            this.Controls.Add(this.btnOneCancel);
+            this.Controls.Add(this.btnTwoConfirm);
+            this.Controls.Add(this.btnOneConfirm);
             this.Controls.Add(this.txtUserTwo);
             this.Controls.Add(this.lblUserTwo);
             this.Controls.Add(this.txtUserOne);
@@ -187,6 +242,10 @@
         private System.Windows.Forms.TextBox txtUserTwo;
         private System.Windows.Forms.Label lblUserTwo;
         private System.Windows.Forms.ToolStripMenuItem menuStart;
+        private System.Windows.Forms.Button btnOneConfirm;
+        private System.Windows.Forms.Button btnOneCancel;
+        private System.Windows.Forms.Button btnTwoConfirm;
+        private System.Windows.Forms.Button btnTwoCancel;
     }
 }
 
