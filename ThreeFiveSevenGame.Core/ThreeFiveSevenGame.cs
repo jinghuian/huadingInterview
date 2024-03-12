@@ -125,6 +125,10 @@ namespace ThreeFiveSevenGameCore
 
             private set
             {
+                if (currentSelectedBox == value)
+                {
+                    return;
+                }
                 currentSelectedBox = value;
                 //触发事件
                 if (CurrentSelectedBoxChanged != null)
