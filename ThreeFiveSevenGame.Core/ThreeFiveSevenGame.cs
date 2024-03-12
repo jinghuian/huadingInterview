@@ -10,7 +10,7 @@ namespace ThreeFiveSevenGameCore
     public class ThreeFiveSevenGame
     {
         /// <summary>
-        /// 一次游戏结束后发生
+        /// 一轮游戏结束后发生
         /// </summary>
         public event EventHandler<string> GameCompleted;
         /// <summary>
@@ -18,16 +18,16 @@ namespace ThreeFiveSevenGameCore
         /// </summary>
         public event EventHandler<string> StatusDescriptionChanged;
         /// <summary>
-        /// 当前用户发声变化后发生
+        /// 当前用户发生变化后发生
         /// </summary>
         public event EventHandler<string> CurrentUserChanged;
         /// <summary>
-        /// 盒子中数量发声变化后发生
+        /// 盒子中数量发生变化后发生
         /// </summary>
         public event EventHandler BoxCountChanged;
 
         /// <summary>
-        /// 盒子中数量发声变化后发生
+        /// 盒子中数量发生变化后发生
         /// </summary>
         public event EventHandler CurrentSelectedBoxChanged;
 
@@ -69,7 +69,7 @@ namespace ThreeFiveSevenGameCore
         /// </summary>
         public int SevenBoxCount { get; private set; } = 7;
 
-       
+
         /// <summary>
         /// 用户One名称
         /// </summary>
@@ -160,15 +160,21 @@ namespace ThreeFiveSevenGameCore
 
 
         }
+        /// <summary>
+        /// 重新开始
+        /// </summary>
         public void ReStart()
         {
             isStart = false;
 
             ReSet();
         }
+        /// <summary>
+        /// 重置各项参数
+        /// </summary>
         private void ReSet()
         {
-            
+
 
             loopNum = 0;//每轮抽取的次数
             loopCount = 1;//抽取轮数
@@ -187,9 +193,13 @@ namespace ThreeFiveSevenGameCore
             StatusDescription = $"等待游戏开始";
 
         }
-
+        /// <summary>
+        /// 一次抽取
+        /// </summary>
+        /// <param name="whichBox"></param>
         public void Extract(BoxType whichBox)
         {
+            //修改数量
             switch ((int)whichBox)
             {
                 case 3:
@@ -204,12 +214,13 @@ namespace ThreeFiveSevenGameCore
 
 
             }
+            //触发事件
             if (BoxCountChanged != null)
             {
                 BoxCountChanged(this, EventArgs.Empty);
             }
             CurrentSelectedBox = whichBox;
-            
+
 
             //判断输赢
             if (TreeBoxCount + FiveBoxCount + SevenBoxCount == 1)
@@ -235,14 +246,20 @@ namespace ThreeFiveSevenGameCore
             }
 
 
-            
+
 
         }
+        /// <summary>
+        /// 玩家确认抽取完成
+        /// </summary>
+        /// <param name="userName"></param>
         public void UserConfirm(string userName)
-        { //改变当前用户
+        { 
+            //改变当前用户
             CurrentUser = GameUserOneName == userName.Trim() ? GameUserTwoName : GameUserOneName;
+
             CurrentSelectedBox = 0;
-            
+
             loopNum++;
             if (loopNum == 2)
             {
@@ -253,11 +270,14 @@ namespace ThreeFiveSevenGameCore
             StatusDescription = $"游戏第{loopCount}轮,请玩家{CurrentUser}抽取";
 
         }
-
+        /// <summary>
+        /// 玩家撤销操作
+        /// </summary>
+        /// <param name="userName"></param>
         public void UserCancel(string userName)
         {
             CurrentSelectedBox = 0;
-            
+
             CancelCount();
             if (BoxCountChanged != null)
             {
@@ -265,12 +285,18 @@ namespace ThreeFiveSevenGameCore
             }
 
         }
+        /// <summary>
+        /// 备份数量
+        /// </summary>
         private void BackupCount()
         {
             exTreeBoxCount = TreeBoxCount;
             exFiveBoxCount = FiveBoxCount;
             exSevenBoxCount = SevenBoxCount;
         }
+        /// <summary>
+        /// 还原数量
+        /// </summary>
         private void CancelCount()
         {
             TreeBoxCount = exTreeBoxCount;
@@ -278,7 +304,7 @@ namespace ThreeFiveSevenGameCore
             SevenBoxCount = exSevenBoxCount;
         }
         /// <summary>
-        /// 
+        /// 盒子类型
         /// </summary>
         public enum BoxType
         {
